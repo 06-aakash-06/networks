@@ -1,4 +1,5 @@
 import socket
+
 def checksum(data):
     total = sum(data)
     while total > 255:

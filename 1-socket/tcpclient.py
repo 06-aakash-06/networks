@@ -9,3 +9,7 @@ while True:
         break
     print("Server : ",s.recv(1024).decode())
 s.close()
+
+
+
+

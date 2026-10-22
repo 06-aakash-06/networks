@@ -7,10 +7,8 @@ s.settimeout(0.5)
 n = int(input("Packets: "))
 size = int(input("Packet size: "))
 interval = float(input("Interval: "))
-
 received = 0
 delays = []
-
 start = time.perf_counter()
 
 for i in range(n):

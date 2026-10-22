@@ -1,11 +1,10 @@
 import simpy
 import random
-
+#udpsimpy
 def send(env, ch, packet, loss, delay):
     if random.random() < loss:
         print("Lost:", packet)
         return
-
     yield env.timeout(random.uniform(delay[0], delay[1]))
     yield ch.put((packet, env.now))
 
@@ -29,7 +28,7 @@ def run(n, size, interval, loss, delay):
 
     env.process(client(env, ch, n, size, interval, loss, delay))
     env.process(server(env, ch, received))
-    env.run(until=n * interval + delay[1] + 1)
+    env.run()
 
     print("Generated:", n)
     print("Received:", len(received))
