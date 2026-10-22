@@ -12,3 +12,4 @@ while True:
     print(s.recv(1024).decode())
 
 s.close()
+

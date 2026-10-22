@@ -10,16 +10,20 @@ s = socket.socket()
 s.bind(("localhost", 5000))
 s.listen(1)
 
-c, addr = s.accept()
+print("Server waiting...")
 
-data = list(map(int, c.recv(1024).decode().split()))
+while True:
+    c, addr = s.accept()
 
-if checksum(data) == 0:
-    print("No Error")
-    c.send(b"No Error")
-else:
-    print("Error Detected")
-    c.send(b"Error Detected")
+    data = []
+    for x in c.recv(1024).decode().split():
+        data.append(int(x))
 
-c.close()
-s.close()
+    print("Received:", data)
+
+    if checksum(data) == 0:
+        c.send(b"No Error")
+    else:
+        c.send(b"Error Detected")
+
+    c.close()
